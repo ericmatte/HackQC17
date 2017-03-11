@@ -7,26 +7,29 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div padding>
+  <div class="dashboard" padding>
     <h2 (click)="getCrashRepports()">Biexnvenue dans Let Me Know!</h2>
     <div class="chart-gauge"></div>
   </div>
-  <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
-  <ion-item>
-    <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
-    <h2>{{ item.title }}</h2>
-    <p>
-      <ion-icon name="pin"></ion-icon>
-      {{ item.address }}
-    </p>
-  </ion-item>
-  <ion-item>
-    <span item-left>18 min</span>
-    <span item-left>(2.6 mi)</span>
-    <button ion-button icon-left clear item-right>
-      <ion-icon name="navigate"></ion-icon>
-      Start
-    </button>
-  </ion-item>
-  </ion-card>
+  <div class="upcoming-events">
+    <h4>Événements à venir</h4>
+    <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
+      <ion-item>
+        <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
+        <h2>{{ item.title }}</h2>
+        <p>
+          <ion-icon name="pin"></ion-icon>
+          {{ item.address }}
+        </p>
+      </ion-item>
+      <ion-item>
+        <span item-left>18 min</span>
+        <span item-left>(2.6 mi)</span>
+        <button ion-button icon-left clear item-right>
+          <ion-icon name="navigate"></ion-icon>
+          Start
+        </button>
+      </ion-item>
+    </ion-card>
+  </div>
 </ion-content>
