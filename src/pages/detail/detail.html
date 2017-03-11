@@ -26,9 +26,8 @@
       </ion-row>
     </ion-grid>
   </div>
-
   <div>
-    <ion-card>
+    <ion-card (click)="changeItem(2)">
       <ion-card-content class="first-choice">
         <ion-grid>
           <ion-row>
@@ -49,7 +48,7 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card (click)="changeItem(1)">
       <ion-card-content>
         <ion-grid>
           <ion-row>
@@ -70,7 +69,22 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    
+    <ion-card (click)="changeItem(3)">
+      <ion-card-header>
+        <ion-icon name="bus"></ion-icon> Autorebus
+      </ion-card-header>
+      <ion-card-content>
+        Wow!
+      </ion-card-content>
+    </ion-card>
+    <ion-card (click)="changeItem(0)">
+      <ion-card-header>
+        <ion-icon name="car"></ion-icon> Voiteredure
+      </ion-card-header>
+      <ion-card-content>
+        Wow!
+      </ion-card-content>
+    </ion-card>
   </div>
   
 </ion-content>
