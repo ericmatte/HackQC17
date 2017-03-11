@@ -2,8 +2,9 @@ page-home {
     ion-icon.center-icon {
         margin: auto;
         width: 100%;
+        text-align: center;
     }
-    h5, ion-icon, .center {
+    h5, ion-row ion-icon, .center {
         margin-top:10px;
         text-align: center;
     }
@@ -55,7 +56,7 @@ page-home {
     }
 
    .scroll-content {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),url('../../assets/img/clouds.jpg');
+        background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),url('../assets/img/clouds.jpg');
         background-size:     cover;                      /* <------ */
         background-repeat:   no-repeat;
         background-position: center center;              /* optional, center the image */

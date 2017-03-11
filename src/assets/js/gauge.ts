@@ -1,5 +1,5 @@
 declare var d3: any;
-var needle;
+export var needle;
 
 export var Gauge = function(node){
 
