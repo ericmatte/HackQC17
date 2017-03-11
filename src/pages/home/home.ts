@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   public getCrashRepports(item): void {
-    this.dataService.getSAAQData().then( (a) => {
+    this.dataService.getPisteCyclableSherbrooke().then( (a) => {
       console.log(a);
     });  
   }
