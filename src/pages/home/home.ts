@@ -17,6 +17,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService) {
     this.upcomingItems = [];
+
     for (let i = 0; i < 10; i++) {
       this.upcomingItems.push({title: 'Rendez-vous #' + i, icon: 'walk', address: '340 rue Lépine'});
     }
