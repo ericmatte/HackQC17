@@ -1,11 +1,29 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      À propos de Let Me Know
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider color="light">Jeux de données utilisés</ion-item-divider>
+      <ion-item *ngFor="let item of usedDatabases">
+        {{item.name}}
+      </ion-item>
+    </ion-item-group>
 
+    <ion-item-group>
+      <ion-item-divider color="light">Frameworks et librairies</ion-item-divider>
+      <ion-item *ngFor="let item of usedLibrairies">
+        {{item.name}}
+        <ion-note item-right>
+        {{item.version}}
+        </ion-note>
+      </ion-item>
+    </ion-item-group>
+
+  </ion-list>
 </ion-content>

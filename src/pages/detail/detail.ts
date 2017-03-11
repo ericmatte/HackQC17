@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import * as moment from "moment";
+import 'moment/locale/fr-ca';
 
 /*
   Generated class for the Detail page.
@@ -12,8 +14,16 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detail.html'
 })
 export class DetailPage {
+  item:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.item = navParams.data;
+  }
+
+  public getTime(date) {
+    moment.locale("fr-ca");
+    return moment(date).fromNow();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');

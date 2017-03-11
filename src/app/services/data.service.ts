@@ -105,7 +105,18 @@ export class DataService {
     }
 
 
-
+    public getPisteCyclableSherbrooke() {
+        return q.Promise((resolve, reject, notify) => {
+            $.ajax({
+                url: '../../assets/data/Piste-Cyclable-Standard.json',
+                dataType: 'text',
+            }).done((jsonResponse: string) => {
+                resolve(JSON.parse(jsonResponse));
+            }).fail( (e): void => {
+                reject(e);
+            });
+        });
+    }
 
     private CSVToArray(strData, strDelimiter?) {
       // Check to see if the delimiter is defined. If not,
