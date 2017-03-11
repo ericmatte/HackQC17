@@ -1,0 +1,9 @@
+Trivia
+	vitesse par rapport aux nombre d'accidents
+	nb de mort sur les routes du quebec
+	pourcentage d'accident velo
+	pourcentage accident char
+	pourcentage accident pieton
+	pourcentage accident bus
+	pourcentage accident region
+	pourcentage accident ville

@@ -1,1 +1,31 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Jean Guy Raymond</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(loginPage)">
+        Tableau de bord
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Statistiques
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Historique des déplacements
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Tableau des meilleurs
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Paramètres
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Déconnexion
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

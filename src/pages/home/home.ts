@@ -39,8 +39,8 @@ export class HomePage {
   }
 
   public getCrashRepports(): void {
-    this.dataService.getSAAQData().then( (a) => {
-      console.log(a);
+    this.dataService.getAccidentRate("rate").then((accident) => {
+      console.log(accident);
     });
 
     //Example to get data from the forecast.
