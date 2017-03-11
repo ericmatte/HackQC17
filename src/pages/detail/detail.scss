@@ -7,10 +7,16 @@ page-detail {
         margin-right:10px;
         font-size:2em;
     }
-    .wannabe-card-reader > * {
-        font-size:3em;
+    h1{
+        text-align:center;
+        border-bottom:1px solid color($colors, primary);
+        margin-top:0 !important;
+        margin-bottom:15px !important;
+        width:100%;
     }
-
+    .first-choice{
+        background-color:color($colors, semi-dark);
+    }
 }
 
 
