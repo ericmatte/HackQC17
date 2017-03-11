@@ -1,18 +1,15 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Let Me Know</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content>
+<ion-content fullscreen="true">
   <div class="dashboard" padding>
-    <h2 (click)="getCrashRepports()">Biexnvenue dans Let Me Know!</h2>
+    <ion-navbar>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>DASHBOARD</ion-title>
+    </ion-navbar>
     <div class="chart-gauge"></div>
   </div>
   <div class="upcoming-events">
-    <h4>Événements à venir</h4>
+    <h5  (click)="getCrashRepports()">Événements à venir</h5>
     <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
       <ion-item>
         <ion-icon name="{{ item.icon }}" item-left large></ion-icon>

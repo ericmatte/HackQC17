@@ -13,6 +13,17 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 
+page-home {
+  ion-header::after {
+    background: transparent;
+    background-image: none !important;
+  }
+  .toolbar {
+    .toolbar-background{
+      background: transparent;
+    }
+  }
+}
 
 
 // Named Color Variables
@@ -30,6 +41,7 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222
 );
+
 
 
 // App iOS Variables
@@ -76,3 +88,5 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$toolbar-background: transparent;

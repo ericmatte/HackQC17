@@ -1,4 +1,8 @@
 page-home {
+    h5 {
+        margin-top:10px;
+        text-align: center;
+    }
     .chart-gauge
     {
         width: 100%;
@@ -24,13 +28,38 @@ page-home {
         font: 10px sans-serif;
     }
     .dashboard{
+        width: 100%;
         z-index:-1;
         position:fixed;
     }
     .upcoming-events{
+        position:relative;
         background-color:#191919;
         margin-top:90%;
         z-index:2;
     }
     
 }
+
+[transparent-header-bg]{
+        .toolbar{
+            .toolbar-background{
+                background: none;
+                border: none;
+                margin: 0;
+            }
+            .toolbar-content{
+                ion-title {
+                    .toolbar-title{
+                        color: white;
+                    }
+                }
+            }
+        }
+        &+ion-content{
+            .fixed-content, .scroll-content{
+                margin-top: 0 !important;
+                z-index:0;
+            }
+        }
+    }
