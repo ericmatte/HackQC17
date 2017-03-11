@@ -8,12 +8,16 @@ import { DetailPage } from '../detail/detail';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  upcomingItems: any[];
 
   constructor(public navCtrl: NavController) {
-    
+    this.upcomingItems = [];
+    for (let i = 0; i < 10; i++) {
+      this.upcomingItems.push({title: 'Rendez-vous #' + i, icon: 'walk', address: '340 rue Lépine'});
+    } 
   }
 
-  showDetail() {
+  showDetail(item) {
     this.navCtrl.push(DetailPage, {
       item: "the item"
     })
