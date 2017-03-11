@@ -1,3 +1,25 @@
 page-home {
+    .chart-gauge
+    {
+        width: 100%;
+        height: 115px;
+        margin: 10px auto  
+    } 
+    .chart-filled
+    {
+        fill: steelblue;
+    }
+    .chart-empty
+    {
+        fill: #dedede;
+    }
 
+    .needle, .needle-center
+    {
+        fill: #464A4F;
+    }
+
+    svg {
+        font: 10px sans-serif;
+    }
 }
