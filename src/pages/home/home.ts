@@ -15,8 +15,8 @@ export class HomePage {
       url: '../../assets/data/rapports-accident-2015.csv',
       dataType: 'text',
     }).done((csvResponse: string) => {
-      
-      console.log(JSON.parse(this.CSV2JSON(csvResponse)));
+      //Eric, you can put this in a variable to use. Pls, do not ouput to console in production
+      //JSON.parse(this.CSV2JSON(csvResponse));
     });
   }
 
