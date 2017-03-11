@@ -42,6 +42,8 @@ export class HomePage {
             date: _date,
             pourcentage : percentage,
           });
+          
+          this._ngZone.run(() => {console.log('Outside Done!') });
       });
     }
     
@@ -97,34 +99,47 @@ export class HomePage {
             );
           }
 
+          let i = 0;
+          this.googleService.getGoogleEstimatedTime(travelModes.walking, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+            if((response.duration.value/60/60) < 15)  choise["marche"] += 3;
+            else if((response.duration.value/60/60) < 30)  choise["marche"] += 2;
+            else if((response.duration.value/60/60) < 50)  choise["marche"] += 1;
+           
+            i++;  
+            if(i == 4)  resolve(choise);
+          }).catch( (error) => {
+            console.log(error);
+          });
+
+          this.googleService.getGoogleEstimatedTime(travelModes.transit, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+            if((response.duration.value/60/60) < 15)  choise["bus"] += 3;
+            else if((response.duration.value/60/60) < 30)  choise["bus"] += 2;
+            else if((response.duration.value/60/60) < 50)  choise["bus"] += 1;
+            
+            i++;  
+            if(i == 4)  resolve(choise);
+          }).catch( (error) => {
+            console.log(error);
+          });
+
+          this.googleService.getGoogleEstimatedTime(travelModes.bicycling, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+            if((response.duration.value/60/60) < 15)  choise["bus"] += 3;
+            else if((response.duration.value/60/60) < 30)  choise["bus"] += 2;
+            else if((response.duration.value/60/60) < 50)  choise["bus"] += 1;
+          
+            i++;  
+            if(i == 4)  resolve(choise);
+          }).catch( (error) => {
+            console.log(error);
+          });
+
           this.googleService.getGoogleEstimatedTime(travelModes.driving, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
             if((response.duration.value/60/60) < 15)  choise["auto"] += 3;
             else if((response.duration.value/60/60) < 30)  choise["auto"] += 2;
             else if((response.duration.value/60/60) < 50)  choise["auto"] += 1;
-            this.googleService.getGoogleEstimatedTime(travelModes.bicycling, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
-              if((response.duration.value/60/60) < 15)  choise["bus"] += 3;
-              else if((response.duration.value/60/60) < 30)  choise["bus"] += 2;
-              else if((response.duration.value/60/60) < 50)  choise["bus"] += 1;
-              this.googleService.getGoogleEstimatedTime(travelModes.transit, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
-                if((response.duration.value/60/60) < 15)  choise["bus"] += 3;
-                else if((response.duration.value/60/60) < 30)  choise["bus"] += 2;
-                else if((response.duration.value/60/60) < 50)  choise["bus"] += 1;
-                this.googleService.getGoogleEstimatedTime(travelModes.walking, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
-                  if((response.duration.value/60/60) < 15)  choise["marche"] += 3;
-                  else if((response.duration.value/60/60) < 30)  choise["marche"] += 2;
-                  else if((response.duration.value/60/60) < 50)  choise["marche"] += 1;
-
-                  resolve(choise);
-                  this._ngZone.run(() => {console.log('Outside Done!') });
-                }).catch( (error) => {
-                  console.log(error);
-                });
-              }).catch( (error) => {
-                console.log(error);
-              });
-            }).catch( (error) => {
-              console.log(error);
-            });
+          
+            i++;  
+            if(i == 4)  resolve(choise);
           }).catch( (error) => {
             console.log(error);
           });
