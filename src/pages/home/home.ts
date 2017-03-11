@@ -15,7 +15,7 @@ import * as $ from "jquery";
 })
 export class HomePage {
   upcomingItems: any[];
-
+  searchBox: string = "";
 
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService, public googleService: GoogleService) {
     this.upcomingItems = [];
@@ -84,6 +84,10 @@ export class HomePage {
     this.navCtrl.push(DetailTabsPage, {
       item: item
     })
+  }
+
+  search(event) {
+    debugger
   }
 
 }
