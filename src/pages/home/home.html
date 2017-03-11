@@ -1,17 +1,33 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Let Me Know</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p (click)="showDetail()">
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content color="light">
+  <div padding>
+    <h2>Biexnvenue dans Let Me Know!</h2>
+
+  </div>
+
+  <span *ngFor="let item of upcomingItems" (click)="showDetail(item)" class="adv-map card card-md">
+  <ion-card>
+
+    <ion-item>
+      <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
+      <h2>{{ item.title }}</h2>
+      <p><ion-icon name="pin"></ion-icon> {{ item.address }}</p>
+    </ion-item>
+    
+    <ion-item>
+      <span item-left>18 min</span>
+      <span item-left>(2.6 mi)</span>
+      <button ion-button icon-left clear item-right>
+        <ion-icon name="navigate"></ion-icon>
+        Start
+      </button>
+    </ion-item>
+
+  </ion-card>
+  </span>
 </ion-content>
