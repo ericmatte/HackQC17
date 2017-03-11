@@ -28,7 +28,7 @@
   </div>
 
   <div class="">
-    <ion-card>
+    <ion-card (click)="changeItem(2)">
       <ion-card-header>
         <ion-icon name="bicycle"></ion-icon> Cycloroulette
       </ion-card-header>
@@ -36,7 +36,7 @@
         Wow!
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card (click)="changeItem(1)">
       <ion-card-header>
         <ion-icon name="walk"></ion-icon> Marchetage
       </ion-card-header>
@@ -44,7 +44,7 @@
         Wow!
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card (click)="changeItem(3)">
       <ion-card-header>
         <ion-icon name="bus"></ion-icon> Autorebus
       </ion-card-header>
@@ -52,7 +52,7 @@
         Wow!
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card (click)="changeItem(0)">
       <ion-card-header>
         <ion-icon name="car"></ion-icon> Voiteredure
       </ion-card-header>

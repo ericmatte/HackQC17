@@ -8,6 +8,6 @@
 </ion-header>
 
 <ion-tabs>
-  <ion-tab [root]="tab1Root" [rootParams]="item" tabTitle="Info" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab2Root" [rootParams]="item" tabTitle="Map" tabIcon="map"></ion-tab>
+  <ion-tab [root]="tab1Root" [rootParams]="{myContainer: myContainer, callback: callback}" tabTitle="Info" tabIcon="information-circle" (itemChanged)="test($event)"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="{container: myContainer}" tabTitle="Map" tabIcon="map"></ion-tab>
 </ion-tabs>
