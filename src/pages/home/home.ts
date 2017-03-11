@@ -19,6 +19,8 @@ export class HomePage {
   progress: number = 0;
 
   searchBox: string = "";
+  gaugeComment: string;
+  gaugeIcon: string;
 
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService, public googleService: GoogleService, public _ngZone : NgZone) {
     this.upcomingItems = [];
@@ -157,7 +159,22 @@ export class HomePage {
   }
 
   setShameGauge() {
-    needle.moveTo(.25)
+    var gaugePercent = Math.random();
+    needle.moveTo(gaugePercent);
+    this.gaugeIcon = (gaugePercent > 0.5) ? "thumbs-up" : "thumbs-down";
+    var comments = ["Putain, mais quest-ce que tu fais de ta vie?", // < 10 %
+                    "Wow, tu devrais vraiment te prendre en main.", // < 20 %
+                    "La vache, essait dont de faire un effort.", // < 30 %
+                    "Un petit peu plus de transports alternatifs, et tu es en business!", // < 40 %
+                    "Ne lâche surtout pas, tu deviendras un être proactif!", // < 50 %
+                    "Je sais que tu peux faire mieux.", // < 60 %
+                    "Une bonne moyenne.", // < 70 %
+                    "Super score mon ami!", // < 80 %
+                    "Du monde proactif comme toi, ça en prends plus!", // < 90 %
+                    "WOW. Toi tu es un esti de bon humain!"]
+    gaugePercent = Math.round(gaugePercent*10);
+    gaugePercent = gaugePercent<0 ? 0 : (gaugePercent>10 ? 10 : gaugePercent);
+    this.gaugeComment = comments[gaugePercent];
   }
 
   public getCrashRepports(): void {

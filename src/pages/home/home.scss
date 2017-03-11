@@ -2,8 +2,9 @@ page-home {
     ion-icon.center-icon {
         margin: auto;
         width: 100%;
+        text-align: center;
     }
-    h5, ion-icon, .center {
+    h5, ion-row ion-icon, .center {
         margin-top:10px;
         text-align: center;
     }
