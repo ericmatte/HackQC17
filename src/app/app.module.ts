@@ -8,6 +8,7 @@ import { DetailTabsPage } from '../pages/detailTabs/detailTabs';
 import { DetailPage } from '../pages/detail/detail';
 import { DataService } from './services/data.service';
 import { WeatherService } from './services/weather.service';
+import { GoogleService } from "./services/google.service";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { WeatherService } from './services/weather.service';
     DetailTabsPage,
     DetailPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService, WeatherService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService, WeatherService, GoogleService]
 })
 export class AppModule {}

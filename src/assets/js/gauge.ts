@@ -15,7 +15,6 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
 
   // Orientation of gauge:
   totalPercent = .75;
-  debugger;
   var el = d3.select(node);
 
   margin = {
