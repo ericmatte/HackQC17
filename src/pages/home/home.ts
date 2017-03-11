@@ -54,15 +54,28 @@ export class HomePage {
         () => console.log('forecast complete')
       );
 
-      this.googleService.getGoogleEstimatedTime(travelModes.driving, "Gatineau, Quebec", "Sherbrooke, Quebec").then( (a) => {
-        console.log("For some reason, we shoud never hit that ?.. Meh Whatever for now.");
-      }).catch( (response) => {
-        if (response.status == 200) {
-          console.log(JSON.parse(response.responseText));
-        }
-        else {
-          console.log("err fetching google api");
-        }
+      this.googleService.getGoogleEstimatedTime(travelModes.driving, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+        console.log("Car", response);
+      }).catch( (error) => {
+        console.log(error);
+      });
+
+      this.googleService.getGoogleEstimatedTime(travelModes.bicycling, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+        console.log("Bike", response);
+      }).catch( (error) => {
+        console.log(error);
+      });
+
+      this.googleService.getGoogleEstimatedTime(travelModes.transit, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+        console.log("Bus", response);
+      }).catch( (error) => {
+        console.log(error);
+      });
+
+      this.googleService.getGoogleEstimatedTime(travelModes.walking, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
+        console.log("Walkreing" ,response);
+      }).catch( (error) => {
+        console.log(error);
       });
   }
 

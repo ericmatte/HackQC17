@@ -16,6 +16,21 @@ export class GoogleService {
 
     public getGoogleEstimatedTime(travelOption: travelModes, origin: string, destination: string) {
         return q.Promise((resolve, reject, notify) => {
+            this._getGoogleEstimatedTime(travelOption, origin, destination).then( (a) => {
+                console.log("For some reason, we shoud never hit that ?.. Meh Whatever for now.");
+            }).catch( (response) => {
+                if (response.status == 200) {
+                    resolve(JSON.parse(response.responseText).rows[0].elements[0]);
+                }
+                else {
+                    reject("err fetching google api");
+                }
+            });
+        });
+    }
+
+    private _getGoogleEstimatedTime(travelOption: travelModes, origin: string, destination: string) {
+        return q.Promise((resolve, reject, notify) => {
             let travelMode;
             if (travelOption == travelModes.driving) {
                 travelMode = "driving";
@@ -35,7 +50,7 @@ export class GoogleService {
             let destinations = destination.replace(/\ /g, "+");
 
             $.ajax({ 
-                url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origins}&destinations=${destinations}&mode=${travelMode}}&language=fr-FR&key=${key}`,
+                url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origins}&destinations=${destinations}&mode=${travelMode}&language=fr-FR&key=${key}`,
                 type: "GET",   
                 dataType: 'application/json',
                 cache: false,
@@ -43,5 +58,7 @@ export class GoogleService {
                 resolve(response);
             });
         });
+
+
     }
 }
