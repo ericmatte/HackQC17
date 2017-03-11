@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { DetailPage } from '../detail/detail';
+import { DetailTabsPage } from '../detailTabs/detailTabs';
 import { DataService } from '../../app/services/data.service';
 import { WeatherService } from '../../app/services/weather.service';
 import 'rxjs/add/operator/map';
@@ -20,7 +20,7 @@ export class HomePage {
     } 
   }
 
-  public getCrashRepports(item): void {
+  public getCrashRepports(): void {
     this.dataService.getSAAQData().then( (a) => {
       console.log(a);
     });
@@ -37,9 +37,9 @@ export class HomePage {
       );
   }
 
-  public showDetail(): void {
-    this.navCtrl.push(DetailPage, {
-      item: "the item"
+  public showDetail(item): void {
+    this.navCtrl.push(DetailTabsPage, {
+      item: item
     })
   }
 
