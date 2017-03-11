@@ -153,6 +153,24 @@ export class HomePage {
     }, 0);
   }
 
+  public onFocus($event) {
+
+    this.upcomingItems.unshift({
+        title: $event.srcElement.value,
+        description: "",
+        icon: 'walk', 
+        depart: 'Sherbrooke, Quebec',
+        destination: $event.srcElement.value,
+        address: $event.srcElement.value,
+        date: new Date().toUTCString(),
+        transport: 1
+    });
+
+    this.navCtrl.push(DetailTabsPage, {
+      item: this.upcomingItems[0]
+    });
+  }
+
   setShameGauge() {
     needle.moveTo(.25)
   }
@@ -172,18 +190,12 @@ export class HomePage {
         err => console.log('err: ' + err),
         () => console.log('forecast complete')
       );
-
-      
+  
   }
 
   public showDetail(item): void {
     this.navCtrl.push(DetailTabsPage, {
       item: item
-    })
+    });
   }
-
-  search(event) {
-    debugger
-  }
-
 }
