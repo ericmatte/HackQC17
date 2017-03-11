@@ -8,7 +8,7 @@ page-home {
 
     .chart-filled
     {
-        fill: steelblue;
+        fill: #ff7b00;
     }
     .chart-empty
     {
@@ -23,4 +23,14 @@ page-home {
     svg {
         font: 10px sans-serif;
     }
+    .dashboard{
+        z-index:-1;
+        position:fixed;
+    }
+    .upcoming-events{
+        background-color:#191919;
+        margin-top:90%;
+        z-index:2;
+    }
+    
 }
