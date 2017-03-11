@@ -1,4 +1,20 @@
 page-home {
+    ion-icon.center-icon {
+        margin: auto;
+        width: 100%;
+    }
+    h5, ion-icon, .center {
+        margin-top:10px;
+        text-align: center;
+    }
+    .left-container {
+        border-right: 1px solid color($colors, primary);
+        margin-top: 0;
+        background-color: color($colors, semi-dark);
+        padding-top: 15px;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+    }
     .chart-gauge
     {
         width: 100%;
@@ -8,7 +24,7 @@ page-home {
 
     .chart-filled
     {
-        fill: #ff7b00;
+        fill: color($colors, primary);
     }
     .chart-empty
     {
@@ -24,13 +40,24 @@ page-home {
         font: 10px sans-serif;
     }
     .dashboard{
+        width: 100%;
         z-index:-1;
         position:fixed;
     }
     .upcoming-events{
-        background-color:#191919;
-        margin-top:90%;
+        position:relative;
+        margin-top:110%;
         z-index:2;
     }
-    
+    .inner-upcomming {
+        padding-top: 3px;
+        background-color: rgba(0, 0, 0, 0.33);
+    }
+
+   .scroll-content {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),url('../../assets/img/clouds.jpg');
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center;              /* optional, center the image */
+   }
 }

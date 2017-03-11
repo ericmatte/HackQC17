@@ -26,22 +26,47 @@
       </ion-row>
     </ion-grid>
   </div>
-
-  <div class="">
+  <div>
     <ion-card (click)="changeItem(2)">
-      <ion-card-header>
-        <ion-icon name="bicycle"></ion-icon> Cycloroulette
-      </ion-card-header>
-      <ion-card-content>
-        Wow!
+      <ion-card-content class="first-choice">
+        <ion-grid>
+          <ion-row>
+            <h1><ion-icon name="bicycle"></ion-icon> Cycloroulette</h1>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="time"></ion-icon> 2h43 / 2600km
+          </ion-row>
+          <ion-row>
+            <ion-icon name="leaf"></ion-icon> CO2 émis: 0g
+          </ion-row>
+          <ion-row>
+            <ion-icon name="heart"></ion-icon> Calories: 1250
+          </ion-row>
+          <ion-row>
+            <ion-icon name="cash"></ion-icon> Cost: 0$
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
     <ion-card (click)="changeItem(1)">
-      <ion-card-header>
-        <ion-icon name="walk"></ion-icon> Marchetage
-      </ion-card-header>
       <ion-card-content>
-        Wow!
+        <ion-grid>
+          <ion-row>
+            <h1><ion-icon name="car"></ion-icon> Voiteriure</h1>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
     <ion-card (click)="changeItem(3)">
