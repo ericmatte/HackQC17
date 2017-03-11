@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
+import { DetailPage } from '../detail/detail';
 
 @Component({
   selector: 'page-home',
@@ -9,7 +10,7 @@ import * as $ from 'jquery';
 export class HomePage {
 
   constructor(public navCtrl: NavController) {
-    
+
     $.ajax({
       url: '../../assets/data/rapports-accident-2015.csv',
       dataType: 'text',
@@ -86,6 +87,12 @@ export class HomePage {
       var str = json.replace(/},/g, "},\r\n");
 
       return str;
+  }
+
+  public showDetail(): void {
+    this.navCtrl.push(DetailPage, {
+      item: "the item"
+    })
   }
 
 }
