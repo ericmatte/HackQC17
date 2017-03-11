@@ -49,18 +49,20 @@ export class HomePage {
     
   }
 
+
   public calculatePercent(depart, destination, date) {
+      var choise = [];
+        choise["velo"]    = 0;
+        choise["bus"]     = 0;
+        choise["marche"]  = 0;
+        choise["auto"]    = 0;
+
       return q.Promise((resolve, reject, notify) => {
-          let choise            = [];
-              choise["velo"]    = 0;
-              choise["bus"]     = 0;
-              choise["marche"]  = 0;
-              choise["auto"]    = 0;
+          let i = 0;
 
           this.dataService.getAccidentRate("rate").then((accident) => {
-                accident.sort();
-                choise[Object.keys(accident)[0]]+=2;       
-                choise[Object.keys(accident)[1]]+=1;            
+                choise[Object.keys(accident)[0]]+=2;  
+                choise[Object.keys(accident)[1]]+=1;       
           });
 
           var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
@@ -93,13 +95,12 @@ export class HomePage {
                     choise["bus"] += 3;
                     choise["marche"] += 3;
                   }
-                }                
+                } 
               },
               err => console.log('err: ' + err)
             );
           }
 
-          let i = 0;
           this.googleService.getGoogleEstimatedTime(travelModes.walking, "1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke", "9 Rue du Cégep, Sherbrooke, QC J1E 2J4").then( (response) => {
             if((response.duration.value/60/60) < 15)  choise["marche"] += 3;
             else if((response.duration.value/60/60) < 30)  choise["marche"] += 2;
@@ -173,24 +174,6 @@ export class HomePage {
 
   setShameGauge() {
     needle.moveTo(.25)
-  }
-
-  public getCrashRepports(): void {
-    this.dataService.getAccidentRate("rate").then((accident) => {
-      console.log(accident);
-    });
-
-    //Example to get data from the forecast.
-    this.weatherService.forecast(7)
-      .map(data => data.json())
-      .subscribe(
-        data => {
-          console.log(data.list);
-        },
-        err => console.log('err: ' + err),
-        () => console.log('forecast complete')
-      );
-  
   }
 
   public showDetail(item): void {
