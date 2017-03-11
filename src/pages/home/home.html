@@ -9,24 +9,28 @@
     <div class="chart-gauge"></div>
   </div>
   <div class="upcoming-events">
-    <h5  (click)="getCrashRepports()">Événements à venir</h5>
-    <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
-      <ion-item>
-        <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
-        <h2>{{ item.title }}</h2>
-        <p>
-          <ion-icon name="pin"></ion-icon>
-          {{ item.address }}
-        </p>
-      </ion-item>
-      <ion-item>
-        <span item-left>18 min</span>
-        <span item-left>(2.6 mi)</span>
-        <button ion-button icon-left clear item-right>
-          <ion-icon name="navigate"></ion-icon>
-          Start
-        </button>
-      </ion-item>
-    </ion-card>
+    <ion-icon name="ios-arrow-up" class="arrow"></ion-icon>
+
+    <div class="inner-upcomming">
+      <h5 (click)="getCrashRepports()">Événements à venir</h5>
+      <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
+        <ion-item>
+          <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
+          <h2>{{ item.title }}</h2>
+          <p>
+            <ion-icon name="pin"></ion-icon>
+            {{ item.address }}
+          </p>
+        </ion-item>
+        <ion-item>
+          <span item-left>18 min</span>
+          <span item-left>(2.6 mi)</span>
+          <button ion-button icon-left clear item-right>
+            <ion-icon name="navigate"></ion-icon>
+            Start
+          </button>
+        </ion-item>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

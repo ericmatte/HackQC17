@@ -1,5 +1,9 @@
 page-home {
-    h5 {
+    ion-icon.arrow {
+        margin: auto;
+        width: 100%;
+    }
+    h5, ion-icon {
         margin-top:10px;
         text-align: center;
     }
@@ -34,32 +38,18 @@ page-home {
     }
     .upcoming-events{
         position:relative;
-        background-color:#191919;
-        margin-top:90%;
+        margin-top:110%;
         z-index:2;
     }
-    
-}
-
-[transparent-header-bg]{
-        .toolbar{
-            .toolbar-background{
-                background: none;
-                border: none;
-                margin: 0;
-            }
-            .toolbar-content{
-                ion-title {
-                    .toolbar-title{
-                        color: white;
-                    }
-                }
-            }
-        }
-        &+ion-content{
-            .fixed-content, .scroll-content{
-                margin-top: 0 !important;
-                z-index:0;
-            }
-        }
+    .inner-upcomming {
+        padding-top: 3px;
+        background-color: rgba(0, 0, 0, 0.33);
     }
+
+   .scroll-content {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),url('../../assets/img/clouds.jpg');
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center;              /* optional, center the image */
+   }
+}
