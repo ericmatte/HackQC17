@@ -89,10 +89,6 @@ export class DataService {
 
                 totalAuto = totalAccident - totalBike - totalPieton - totalBus;
 
-                //console.log(statsCity);
-                //console.log(statsSpeed);
-                //for(var k in statsMeteo) console.log(conditionMeteo[k], statsMeteo[k]);
-
                 if(needed == "rate")                 
                     resolve({"velo":totalBike/totalAccident*100,"marche":totalPieton/totalAccident*100,"bus":totalBus/totalAccident*100,"auto":totalAuto/totalAccident*100})
                 else if (needed == "general") resolve({"velo":totalBike, "marche":totalPieton, "bus":totalBus, "auto":totalAuto, "total":totalAccident});
@@ -101,10 +97,8 @@ export class DataService {
                 else if (needed == "speed") resolve(statsSpeed);
             });  
         });  
-        
     }
-
-
+    
     public getPisteCyclableSherbrooke() {
         return q.Promise((resolve, reject, notify) => {
             $.ajax({
@@ -116,6 +110,12 @@ export class DataService {
                 reject(e);
             });
         });
+    }
+
+    public getCout(type: string, distance: number) {
+        if(type == "auto") return distance * (7/100) * 1.05;
+        else if (type == "bus") return 1;
+        else return 0;
     }
 
     private CSVToArray(strData, strDelimiter?) {
