@@ -15,11 +15,19 @@ import * as $ from "jquery";
 export class HomePage {
   upcomingItems: any[];
 
+
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService) {
     this.upcomingItems = [];
 
     for (let i = 0; i < 10; i++) {
-      this.upcomingItems.push({title: 'Rendez-vous #' + i, icon: 'walk', address: '340 rue Lépine'});
+      this.upcomingItems.push({
+        title: 'Golf' + i, 
+        description: "Meeting important au golf avec les dirigants.",
+        icon: 'walk', 
+        depart: '1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke, QC J1L 0C8',
+        destination: "3455 rue du Fer-Droit, Sherbrooke, QC J1H 0A8",
+        date: "2017-03-12T19:10:31.236Z",
+      });
     }
   }
 

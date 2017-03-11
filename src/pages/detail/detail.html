@@ -14,16 +14,16 @@
   <div color="primary">
     <ion-grid>
       <ion-row class="justify-space-between">
-        {{item.title}} <span>in 32 min</span>
+        {{item.title}} <span>{{getTime(item.date)}}</span>
       </ion-row>
       <ion-row>
         {{item.description}}
       </ion-row>
       <ion-row>
-        Départ
+        {{item.depart}}
       </ion-row>
       <ion-row>
-        Destination
+        {{item.destination}}
       </ion-row>
     </ion-grid>
   </div>
