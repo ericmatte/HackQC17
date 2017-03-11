@@ -4,9 +4,10 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { DetailTabsPage } from '../pages/detailTabs/detailTabs';
 import { DetailPage } from '../pages/detail/detail';
 import { DataService } from './services/data.service';
+import { WeatherService } from './services/weather.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { DataService } from './services/data.service';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
+    DetailTabsPage,
     DetailPage
   ],
   imports: [
@@ -26,9 +27,9 @@ import { DataService } from './services/data.service';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
+    DetailTabsPage,
     DetailPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService, WeatherService]
 })
 export class AppModule {}
