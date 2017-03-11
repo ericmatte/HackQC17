@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { DetailTabsPage } from '../pages/detailTabs/detailTabs';
 import { DetailPage } from '../pages/detail/detail';
 import { MapPage } from '../pages/map/map';
+import { StatsPage } from '../pages/stats/stats';
 import { DataService } from './services/data.service';
 import { WeatherService } from './services/weather.service';
 import { GoogleService } from "./services/google.service";
@@ -19,7 +20,8 @@ import { GoogleService } from "./services/google.service";
     HomePage,
     DetailTabsPage,
     DetailPage,
-    MapPage
+    MapPage,
+    StatsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -32,7 +34,8 @@ import { GoogleService } from "./services/google.service";
     HomePage,
     DetailTabsPage,
     DetailPage,
-    MapPage
+    MapPage,
+    StatsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService, WeatherService, GoogleService]
 })
