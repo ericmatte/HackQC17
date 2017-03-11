@@ -6,6 +6,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { DetailTabsPage } from '../pages/detailTabs/detailTabs';
 import { DetailPage } from '../pages/detail/detail';
+import { MapPage } from '../pages/map/map';
 import { DataService } from './services/data.service';
 import { WeatherService } from './services/weather.service';
 
@@ -16,7 +17,8 @@ import { WeatherService } from './services/weather.service';
     ContactPage,
     HomePage,
     DetailTabsPage,
-    DetailPage
+    DetailPage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -28,7 +30,8 @@ import { WeatherService } from './services/weather.service';
     ContactPage,
     HomePage,
     DetailTabsPage,
-    DetailPage
+    DetailPage,
+    MapPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DataService, WeatherService]
 })
