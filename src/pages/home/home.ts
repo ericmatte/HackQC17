@@ -5,7 +5,7 @@ import { DataService } from '../../app/services/data.service';
 import { WeatherService } from '../../app/services/weather.service';
 import { GoogleService, travelModes } from "../../app/services/google.service";
 import 'rxjs/add/operator/map';
-import { Gauge } from "../../assets/js/gauge";
+import { Gauge, needle } from "../../assets/js/gauge";
 import * as $ from "jquery";
 
 @Component({
@@ -32,12 +32,18 @@ export class HomePage {
         transport: 1
       });
     }
+    
   }
 
   ngOnInit() {
     setTimeout( () => {
       Gauge($(".chart-gauge")[0]);
+      this.setShameGauge();
     }, 0);
+  }
+
+  setShameGauge() {
+    needle.moveTo(.25)
   }
 
   public getCrashRepports(): void {
