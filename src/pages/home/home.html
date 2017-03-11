@@ -1,30 +1,31 @@
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Let Me Know</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   <div padding>
     <h2 (click)="getCrashRepports()">Biexnvenue dans Let Me Know!</h2>
   </div>
-
   <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
-
-    <ion-item>
-      <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
-      <h2>{{ item.title }}</h2>
-      <p><ion-icon name="pin"></ion-icon> {{ item.address }}</p>
-    </ion-item>
-    
-    <ion-item>
-      <span item-left>18 min</span>
-      <span item-left>(2.6 mi)</span>
-      <button ion-button icon-left clear item-right>
-        <ion-icon name="navigate"></ion-icon>
-        Start
-      </button>
-    </ion-item>
-
+  <ion-item>
+    <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
+    <h2>{{ item.title }}</h2>
+    <p>
+      <ion-icon name="pin"></ion-icon>
+      {{ item.address }}
+    </p>
+  </ion-item>
+  <ion-item>
+    <span item-left>18 min</span>
+    <span item-left>(2.6 mi)</span>
+    <button ion-button icon-left clear item-right>
+      <ion-icon name="navigate"></ion-icon>
+      Start
+    </button>
+  </ion-item>
   </ion-card>
 </ion-content>
