@@ -5,7 +5,7 @@ import { DataService } from '../../app/services/data.service';
 import { WeatherService } from '../../app/services/weather.service';
 import { GoogleService, travelModes } from "../../app/services/google.service";
 import 'rxjs/add/operator/map';
-import { Gauge } from "../../assets/js/gauge";
+import { Gauge, needle } from "../../assets/js/gauge";
 import * as $ from "jquery";
 import * as q from "q";
 
@@ -18,6 +18,7 @@ export class HomePage {
   upcomingItems: any[];
   progress: number = 0;
 
+  searchBox: string = "";
 
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService, public googleService: GoogleService, public _ngZone : NgZone) {
     this.upcomingItems = [];
@@ -43,6 +44,7 @@ export class HomePage {
           });
       });
     }
+    
   }
 
   public calculatePercent(depart, destination, date) {
@@ -132,7 +134,12 @@ export class HomePage {
   ngOnInit() {
     setTimeout( () => {
       Gauge($(".chart-gauge")[0]);
+      this.setShameGauge();
     }, 0);
+  }
+
+  setShameGauge() {
+    needle.moveTo(.25)
   }
 
   public getCrashRepports(): void {
@@ -158,6 +165,10 @@ export class HomePage {
     this.navCtrl.push(DetailTabsPage, {
       item: item
     })
+  }
+
+  search(event) {
+    debugger
   }
 
 }

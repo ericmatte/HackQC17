@@ -3,8 +3,20 @@ page-detail {
         display: flex;
         justify-content: space-between;
     }
-    
-
+    ion-icon{
+        margin-right:10px;
+        font-size:2em;
+    }
+    h1{
+        text-align:center;
+        border-bottom:1px solid color($colors, primary);
+        margin-top:0 !important;
+        margin-bottom:15px !important;
+        width:100%;
+    }
+    .first-choice{
+        background-color:color($colors, semi-dark);
+    }
 }
 
 

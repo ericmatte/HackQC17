@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import * as moment from "moment";
 import 'moment/locale/fr-ca';
@@ -14,15 +14,22 @@ import 'moment/locale/fr-ca';
   templateUrl: 'detail.html'
 })
 export class DetailPage {
-  item:any;
+  @Input() item: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.item = navParams.data;
+    this.item = navParams.data.myContainer;
   }
 
   public getTime(date) {
-    moment.locale("fr-ca");
-    return moment(date).fromNow();
+    if(date) {
+      moment.locale("fr-ca");
+      return moment(date).fromNow();
+    }
+    return '';
+  }
+
+  changeItem(number) {
+    this.navParams.data.callback(number);
   }
 
   ionViewDidLoad() {
