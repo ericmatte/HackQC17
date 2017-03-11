@@ -13,20 +13,21 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public dataService: DataService) {
     this.upcomingItems = [];
+
     for (let i = 0; i < 10; i++) {
       this.upcomingItems.push({title: 'Rendez-vous #' + i, icon: 'walk', address: '340 rue Lépine'});
     } 
   }
 
-  public getCrashRepports(item): void {
+  public getCrashRepports(): void {
     this.dataService.getSAAQData().then( (a) => {
       console.log(a);
     });  
   }
 
-  public showDetail(): void {
+  public showDetail(item): void {
     this.navCtrl.push(DetailPage, {
-      item: "the item"
+      item: item
     })
   }
 
