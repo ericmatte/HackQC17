@@ -13,16 +13,25 @@
 <ion-content>
   <div color="primary">
     <ion-grid>
-      <ion-row>{{getTime(item.date)}}
+      <ion-row>
+        <ion-col>
+          <h4>Temps avant l'événement: </h4>{{getTime(item.date)}}
+        </ion-col>
       </ion-row>
       <ion-row>
-        {{item.description}}
+        <ion-col>
+          <h4>Description: </h4>{{item.description}}
+        </ion-col>
       </ion-row>
       <ion-row>
-        {{item.depart}}
+        <ion-col>
+          <h4>Addresse de Départ: </h4>{{item.depart}}
+        </ion-col>
       </ion-row>
       <ion-row>
-        {{item.destination}}
+        <ion-col>
+          <h4>Addresse de Destination: </h4>{{item.destination}}
+        </ion-col>
       </ion-row>
     </ion-grid>
   </div>
@@ -48,7 +57,7 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ion-card (click)="changeItem(1)">
+    <ion-card (click)="changeItem(0)">
       <ion-card-content>
         <ion-grid>
           <ion-row>
@@ -69,7 +78,49 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
+    <ion-card (click)="changeItem(1)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <h1><ion-icon name="car"></ion-icon> Marcheriaire</h1>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
     <ion-card (click)="changeItem(3)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <h1><ion-icon name="car"></ion-icon> Autorebus</h1>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
+          </ion-row>
+          <ion-row>
+            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <!--<ion-card (click)="changeItem(3)">
       <ion-card-header>
         <ion-icon name="bus"></ion-icon> Autorebus
       </ion-card-header>
@@ -84,7 +135,7 @@
       <ion-card-content>
         Wow!
       </ion-card-content>
-    </ion-card>
+    </ion-card>-->
   </div>
   
 </ion-content>

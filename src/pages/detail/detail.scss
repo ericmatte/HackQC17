@@ -5,9 +5,10 @@ page-detail {
     }
     ion-icon{
         margin-right:10px;
-        font-size:2em;
+        font-size:1.5em;
     }
     h1{
+        color:#f4f4f4 !important;
         text-align:center;
         border-bottom:1px solid color($colors, primary);
         margin-top:0 !important;
@@ -16,6 +17,9 @@ page-detail {
     }
     .first-choice{
         background-color:color($colors, semi-dark);
+    }
+    .h4{
+
     }
 }
 
