@@ -4,21 +4,108 @@ import * as q from "q";
 
 @Injectable()
 export class DataService {
-
+    saaq: boolean = false;
+    saaqData: string = null;
     constructor() { }
 
     public getSAAQData() {
         return q.Promise((resolve, reject, notify) => {
-            $.ajax({
-                url: '../../assets/data/rapports-accident-2015.csv',
-                dataType: 'text',
-            }).done((csvResponse: string) => {
-                resolve(JSON.parse(this.CSV2JSON(csvResponse)));
-            }).fail( (e): void => {
-                reject(e);
-            });
+            if(this.saaq) {
+                resolve(this.saaqData);
+            }
+            else {
+                $.ajax({
+                    url: '../../assets/data/rapports-accident-2015.csv',
+                    dataType: 'text',
+                }).done((csvResponse: string) => {
+                    resolve(JSON.parse(this.CSV2JSON(csvResponse)));
+                }).fail( (e): void => {
+                    reject(e);
+                });
+            }
         });
     }
+
+     public getAccidentRate(needed: string) {
+        return q.Promise((resolve, reject, notify) => {
+            this.getSAAQData().then( (report) => {
+                if(!this.saaq) {
+                    this.saaq = true;
+                    this.saaqData = report;
+                }
+                let statsCity     = [];
+                let statsSpeed    = [];
+                let statsMeteo    = [];
+                let totalAccident = 0;
+                let totalAuto     = 0;
+                let totalBike     = 0;
+                let totalPieton   = 0;
+                let totalBus      = 0;
+
+                let conditionMeteo = [];
+                    conditionMeteo[11] = "Ensoleillé";
+                    conditionMeteo[12] = "Couvert";
+                    conditionMeteo[13] = "Brouillard";
+                    conditionMeteo[14] = "Pluie";
+                    conditionMeteo[15] = "Averse";
+                    conditionMeteo[16] = "Vent Fort";
+                    conditionMeteo[17] = "Neige";
+                    conditionMeteo[18] = "Poudrerie";
+                    conditionMeteo[19] = "Verglas";
+                    conditionMeteo[99] = "Autre";
+
+                for(var k in report) {
+                    totalAccident++;
+                    let city = {
+                        Dead          : parseInt(report[k].NB_MORTS),
+                        VictimeTotal  : parseInt(report[k].NB_VICTIMES_TOTAL),
+                        VictimePieton : parseInt(report[k].NB_VICTIMES_PIETON),
+                        VictimeVelo   : parseInt(report[k].NB_VICTIMES_VELO),
+                        Region        : report[k].REG_ADM,
+                        Bus           : parseInt(report[k].nb_tous_autobus_minibus),
+                        Bike          : parseInt(report[k].nb_bicyclette),
+                    }
+
+                    if(city.Bus) totalBus++;
+                    if(city.VictimePieton) totalPieton++;
+                    if(city.Bike) totalBike++;
+
+                    if(!statsCity[report[k].MRC]) statsCity[report[k].MRC] = city;
+                    else {
+                        statsCity[report[k].MRC].Dead          += city.Dead;
+                        statsCity[report[k].MRC].VictimeTotal  += city.VictimeTotal;
+                        statsCity[report[k].MRC].VictimePieton += city.VictimePieton;
+                        statsCity[report[k].MRC].VictimeVelo   += city.VictimeVelo;
+                        statsCity[report[k].MRC].Bus           += city.Bus;
+                        statsCity[report[k].MRC].Bike          += city.Bike;
+                    }
+
+                    if(!statsSpeed[report[k].VITESSE_AUTOR]) statsSpeed[report[k].VITESSE_AUTOR] = 1;
+                    else statsSpeed[report[k].VITESSE_AUTOR]++;
+
+                    if(!statsMeteo[report[k].CD_COND_METEO]) statsMeteo[report[k].CD_COND_METEO] = 1;
+                    else statsMeteo[report[k].CD_COND_METEO]++;
+                }
+
+                totalAuto = totalAccident - totalBike - totalPieton - totalBus;
+
+                //console.log(statsCity);
+                //console.log(statsSpeed);
+                //for(var k in statsMeteo) console.log(conditionMeteo[k], statsMeteo[k]);
+
+                if(needed == "rate")                 
+                    resolve({"velo":totalBike/totalAccident*100,"marche":totalPieton/totalAccident*100,"bus":totalBus/totalAccident*100,"auto":totalAuto/totalAccident*100})
+                else if (needed == "general") resolve({"velo":totalBike, "marche":totalPieton, "bus":totalBus, "auto":totalAuto, "total":totalAccident});
+                else if (needed == "ville") resolve(statsCity);
+                else if (needed == "meteo") resolve(statsMeteo);
+                else if (needed == "speed") resolve(statsSpeed);
+            });  
+        });  
+        
+    }
+
+
+
 
     private CSVToArray(strData, strDelimiter?) {
       // Check to see if the delimiter is defined. If not,

@@ -12,16 +12,14 @@ export class HomePage {
   upcomingItems: any[];
 
   constructor(public navCtrl: NavController, public dataService: DataService) {
+    this.dataService.getAccidentRate("rate").then((accident) => {
+      console.log(accident);
+    });
+    console.log(this.dataService.getAccidentRate("rate"));
     this.upcomingItems = [];
     for (let i = 0; i < 10; i++) {
       this.upcomingItems.push({title: 'Rendez-vous #' + i, icon: 'walk', address: '340 rue Lépine'});
     } 
-  }
-
-  public getCrashRepports(item): void {
-    this.dataService.getSAAQData().then( (a) => {
-      console.log(a);
-    });  
   }
 
   public showDetail(): void {
