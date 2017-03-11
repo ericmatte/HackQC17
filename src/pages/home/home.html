@@ -1,13 +1,22 @@
 <ion-content fullscreen="true">
   <div class="dashboard" padding>
     <ion-navbar>
-      <button ion-button icon-only menuToggle>
+      <button ion-button icon-only menuToggle style="margin-top: 0 !important">
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>Tableau de bord</ion-title>
     </ion-navbar>
-    <div class="chart-gauge"></div>
-    <label><ion-icon name="{{ gaugeIcon }}"></ion-icon> {{ gaugeComment }}</label>
+    <div class="chart-gauge" style="margin-left:10px; margin-top:0"></div>
+    <br><br>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col col-10 style="text-align: center; margin-top: -10px;">
+        <label><ion-icon name="{{ gaugeIcon }}"></ion-icon> {{ gaugeComment }}</label>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
   </div>
   <div class="upcoming-events">
     <ion-icon name="ios-arrow-up" class="center-icon"></ion-icon>
