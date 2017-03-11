@@ -4,32 +4,45 @@
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>DASHBOARD</ion-title>
+      <ion-title>Tableau de bord</ion-title>
     </ion-navbar>
     <div class="chart-gauge"></div>
   </div>
   <div class="upcoming-events">
-    <ion-icon name="ios-arrow-up" class="arrow"></ion-icon>
+    <ion-icon name="ios-arrow-up" class="center-icon"></ion-icon>
 
     <div class="inner-upcomming">
       <h5 (click)="getCrashRepports()">Événements à venir</h5>
+
+
       <ion-card *ngFor="let item of upcomingItems" (click)="showDetail(item)">
-        <ion-item>
-          <ion-icon name="{{ item.icon }}" item-left large></ion-icon>
-          <h2>{{ item.title }}</h2>
-          <p>
-            <ion-icon name="pin"></ion-icon>
-            {{ item.address }}
-          </p>
-        </ion-item>
-        <ion-item>
-          <span item-left>18 min</span>
-          <span item-left>(2.6 mi)</span>
-          <button ion-button icon-left clear item-right>
-            <ion-icon name="navigate"></ion-icon>
-            Start
-          </button>
-        </ion-item>
+          <ion-row>
+            <ion-col class="center left-container">
+              <ion-icon name="{{ item.icon }}" class="center-icon" style="font-size: 2.5em"></ion-icon>
+              <div item-left>18 min</div>
+              <div item-left>(2.6 mi)</div>
+            </ion-col>
+            <ion-col col-9>
+              <h2 class="card-header">{{ item.title }}</h2>
+              <div>
+                <p class="gray">
+                  <ion-icon name="pin"></ion-icon>
+                  {{ item.address }}
+                </p>
+                <ion-row>
+                  <ion-col>
+                    <ion-icon name="leaf"></ion-icon> 20%
+                  </ion-col>
+                  <ion-col>
+                    <ion-icon name="heart"></ion-icon> 50%
+                  </ion-col>
+                  <ion-col>
+                    <ion-icon name="logo-usd"></ion-icon> 30%
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-col>
+          </ion-row>
       </ion-card>
     </div>
   </div>

@@ -1,11 +1,19 @@
 page-home {
-    ion-icon.arrow {
+    ion-icon.center-icon {
         margin: auto;
         width: 100%;
     }
-    h5, ion-icon {
+    h5, ion-icon, .center {
         margin-top:10px;
         text-align: center;
+    }
+    .left-container {
+        border-right: 1px solid color($colors, primary);
+        margin-top: 0;
+        background-color: color($colors, semi-dark);
+        padding-top: 15px;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
     }
     .chart-gauge
     {
@@ -16,7 +24,7 @@ page-home {
 
     .chart-filled
     {
-        fill: #ff7b00;
+        fill: color($colors, primary);
     }
     .chart-empty
     {
