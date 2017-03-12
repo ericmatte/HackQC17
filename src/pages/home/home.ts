@@ -189,7 +189,7 @@ export class HomePage {
                     "Du monde proactif comme toi, ça en prends plus!", // < 90 %
                     "WOW. Toi tu es un super de bon humain!"]
     gaugePercent = Math.round(gaugePercent*10);
-    gaugePercent = gaugePercent<0 ? 0 : (gaugePercent>10 ? 10 : gaugePercent);
+    gaugePercent = gaugePercent<0 ? 0 : (gaugePercent>=10 ? 9 : gaugePercent);
     this.gaugeComment = comments[gaugePercent];
   }
 
