@@ -32,6 +32,7 @@ export class HomePage {
       let _destination  = "3455 rue du Fer-Droit, Sherbrooke, QC J1H 0A8";
       let _date         = "2017-03-17T19:10:31.236Z";   
       this.calculatePercent(_depart,_destination,_date).then( (percentage) => {
+        console.log("1");
           let type = this.getItemType(percentage);
           let icon = "walk";
           let transport = 0;
