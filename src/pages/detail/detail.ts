@@ -18,16 +18,13 @@ export class DetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.item = navParams.data.myContainer.item;
-    debugger;
   }
 
   public getTime(date) {
     if(date) {
       moment.locale("fr-ca");
-      debugger;
       return moment(date).fromNow();
     }
-    debugger;
     return '';
   }
 
