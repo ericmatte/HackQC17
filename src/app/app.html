@@ -1,28 +1,20 @@
 <ion-menu [content]="content">
-  <ion-header>
+  <ion-content fullscreen=true>
     <ion-toolbar>
       <ion-title>Let Me Know</ion-title>
     </ion-toolbar>
-  </ion-header>
-  <ion-content>
     <ion-list>
       <button ion-item (click)="openPage(loginPage)">
-        Tableau de bord
+        <ion-icon name="home"></ion-icon> Tableau de bord
       </button>
       <button ion-item (click)="openPage(signupPage)">
-        Statistiques
+        <ion-icon name="stats"></ion-icon> Statistiques
       </button>
       <button ion-item (click)="openPage(signupPage)">
-        Historique des déplacements
+        <ion-icon name="folder"></ion-icon> Historique des déplacements
       </button>
       <button ion-item (click)="openPage(signupPage)">
-        Tableau des meilleurs
-      </button>
-      <button ion-item (click)="openPage(signupPage)">
-        Paramètres
-      </button>
-      <button ion-item (click)="openPage(signupPage)">
-        Déconnexion
+        <ion-icon name="podium"></ion-icon> Tableau des meilleurs
       </button>
     </ion-list>
   </ion-content>
