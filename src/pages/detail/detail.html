@@ -16,23 +16,21 @@
       
       <ion-row>
         <ion-col>
-          <h4>Temps avant l'événement: </h4>{{getTime(item.date)}}
+          {{item.description}}
         </ion-col>
       </ion-row>
+      <hr>
       <ion-row>
-        <ion-col>
-          <h4>Description: </h4>{{item.description}}
-        </ion-col>
+          <ion-col col-1><ion-icon name="time"></ion-icon></ion-col>
+          <ion-col>{{getTime(item.date)}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          <h4>Addresse de Départ: </h4>{{item.depart}}
-        </ion-col>
+          <ion-col col-1><ion-icon name="locate"></ion-icon></ion-col>
+          <ion-col>{{item.depart}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          <h4>Addresse de Destination: </h4>{{item.destination}}
-        </ion-col>
+          <ion-col col-1><ion-icon name="pin"></ion-icon></ion-col>
+          <ion-col>{{item.destination}}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
