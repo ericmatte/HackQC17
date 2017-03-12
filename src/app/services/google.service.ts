@@ -45,7 +45,7 @@ export class GoogleService {
                 travelMode = "transit";
             }
 
-            let key = `AIzaSyARnX4lNqjy8CRsHy_6ZQmo8reegpbEzdE`;
+            let key = `AIzaSyBD5iQuKBB6v510m2hJxZFbUY-ho6nqx7M`;
             let origins = origin.replace(/\ /g, "+");
             let destinations = destination.replace(/\ /g, "+");
 
