@@ -6,17 +6,19 @@
 -->
 <ion-header>
   <ion-navbar>
-    
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="trivia">
-      <ion-row>
-          <ion-col col-1><ion-icon name="bulb"></ion-icon></ion-col>
-          <ion-col>{{ triviaCard }}</ion-col>
-      </ion-row>
-    
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon name="bulb"></ion-icon>
+      </ion-col>
+      <ion-col>{{ triviaCard }}</ion-col>
+    </ion-row>
+
   </ion-card>
   <div color="primary">
     <ion-grid>
@@ -27,37 +29,44 @@
       </ion-row>
       <hr>
       <ion-row>
-          <ion-col col-1><ion-icon name="time"></ion-icon></ion-col>
-          <ion-col>{{getTime(item.date)}}</ion-col>
+        <ion-col col-1>
+          <ion-icon name="time"></ion-icon>
+        </ion-col>
+        <ion-col>{{getTimeTop(item.date)}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col col-1><ion-icon name="locate"></ion-icon></ion-col>
-          <ion-col>{{item.depart}}</ion-col>
+        <ion-col col-1>
+          <ion-icon name="locate"></ion-icon>
+        </ion-col>
+        <ion-col>{{item.depart}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col col-1><ion-icon name="pin"></ion-icon></ion-col>
-          <ion-col>{{item.destination}}</ion-col>
+        <ion-col col-1>
+          <ion-icon name="pin"></ion-icon>
+        </ion-col>
+        <ion-col>{{item.destination}}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
   <div>
     <ion-card (click)="changeItem(2)">
-      <ion-card-content class="first-choice">
+      <ion-card-content class="active">
         <ion-grid>
           <ion-row>
-            <h1><ion-icon name="bicycle"></ion-icon> Bicycle</h1>
+            <h1>
+              <ion-icon name="bicycle"></ion-icon> Bicycle</h1>
           </ion-row>
           <ion-row>
-            <ion-icon name="time"></ion-icon> 2h43 / 2600km
+            <ion-icon name="time"></ion-icon> {{getTime(item, 'velo')}} / {{getDistanceString(item, 'velo')}}
           </ion-row>
           <ion-row>
-            <ion-icon name="leaf"></ion-icon> CO2 émis: 0g
+            <ion-icon name="leaf"></ion-icon> CO2 émis: {{getEcology(item, 'velo')}} kg <span *ngIf='this.getItemType(item.pourcentage)!="velo"'>(<span color="secondary">200</span>)</span>
           </ion-row>
           <ion-row>
-            <ion-icon name="heart"></ion-icon> Calories: 1250
+            <ion-icon name="heart"></ion-icon> Calories: {{getHealth(item, 'velo') | number:'1.0-3'}} Kcal
           </ion-row>
           <ion-row>
-            <ion-icon name="cash"></ion-icon> Cost: 0$
+            <ion-icon name="cash"></ion-icon> Coûts: {{getEconomy(item, 'velo') | number:'1.2-2'}} $
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -66,19 +75,20 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <h1><ion-icon name="car"></ion-icon> Voiture</h1>
+            <h1>
+              <ion-icon name="car"></ion-icon> Voiture</h1>
           </ion-row>
           <ion-row>
-            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
+            <ion-icon name="time"></ion-icon> {{getTime(item, 'auto')}} / {{getDistanceString(item, 'auto')}}
           </ion-row>
           <ion-row>
-            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
+            <ion-icon name="leaf"></ion-icon> CO2 émis: {{getEcology(item, 'auto')}} kg
           </ion-row>
           <ion-row>
-            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
+            <ion-icon name="heart"></ion-icon> Calories: {{getHealth(item, 'auto') | number:'1.0-3'}} Kcal
           </ion-row>
           <ion-row>
-            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
+            <ion-icon name="cash"></ion-icon> Coûts: {{getEconomy(item, 'auto') | number:'1.2-2'}} $
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -87,19 +97,20 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <h1><ion-icon name="walk"></ion-icon> Marche</h1>
+            <h1>
+              <ion-icon name="walk"></ion-icon> Marche</h1>
           </ion-row>
           <ion-row>
-            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
+            <ion-icon name="time"></ion-icon> {{getTime(item, 'marche')}} / {{getDistanceString(item, 'marche')}} <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="marche"'>(<span [ngClass]="(getDistance(item, 'marche')-getDistance(item, this.getItemType(item.pourcentage))) > 0 ? 'positive' : 'negative'">{{(getHealth(item, 'bus')-getHealth(item, this.getItemType(item.pourcentage))) | number:'1.0-3'}}</span>)</span>
           </ion-row>
           <ion-row>
-            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
+            <ion-icon name="leaf"></ion-icon> CO2 émis: {{getEcology(item, 'marche')}} kg <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="marche"'>(<span [ngClass]="(getEcology(item, 'marche')-getEcology(item, this.getItemType(item.pourcentage))) > 0 ? 'positive' : 'negative'">{{(getEcology(item, 'bus')-getEcology(item, this.getItemType(item.pourcentage))) | number:'1.0-3'}}</span>)</span>
           </ion-row>
           <ion-row>
-            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
+            <ion-icon name="heart"></ion-icon> Calories: {{getHealth(item, 'marche') | number:'1.0-3'}} Kcal <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="marche"'>(<span [ngClass]="(getHealth(item, 'marche')-getHealth(item, this.getItemType(item.pourcentage))) > 0 ? 'positive' : 'negative'">{{(getHealth(item, 'marche')-getHealth(item, this.getItemType(item.pourcentage))) | number:'1.0-3'}}</span>)</span>
           </ion-row>
           <ion-row>
-            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
+            <ion-icon name="cash"></ion-icon> Coûts: {{getEconomy(item, 'marche') | number:'1.2-2'}} $ <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="marche"'>(<span [ngClass]="(getEconomy(item, 'marche')-getEconomy(item, this.getItemType(item.pourcentage))) < 0 ? 'positive' : 'negative'">{{(getEconomy(item, 'marche')-getEconomy(item, this.getItemType(item.pourcentage))) | number:'1.0-3'}}</span>)</span>
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -108,21 +119,27 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <h1><ion-icon name="bus"></ion-icon> Autobus</h1>
+            <h1>
+              <ion-icon name="bus"></ion-icon> Autobus</h1>
           </ion-row>
-          <ion-row>
-            <ion-icon name="time"></ion-icon> 3ms / 2km (<span color="secondary">-6h</span>)
-          </ion-row>
-          <ion-row>
-            <ion-icon name="leaf"></ion-icon> CO2 émis: 1.27 Kg (<span color="danger">1.27 Kg</span>)
-          </ion-row>
-          <ion-row>
-            <ion-icon name="heart"></ion-icon> Calories: 0 (<span color="danger">-1250</span>)
-          </ion-row>
-          <ion-row>
-            <ion-icon name="cash"></ion-icon> Cost: 176$ (<span color="danger">176$</span>)
-          </ion-row>
+          <div *ngIf="getDistance(item, 'bus')!=0">
+            <ion-row>
+              <ion-icon name="time"></ion-icon> {{getTime(item, 'bus')}} / {{getDistanceString(item, 'bus')}} <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="bus"'>(<span color="secondary">{{getDistance(item, 'bus')-getDistance(item, this.getItemType(item.pourcentage))}}</span>)</span>
+            </ion-row>
+            <ion-row>
+              <ion-icon name="leaf"></ion-icon> CO2 émis: {{getEcology(item, 'bus')}} kg <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="bus"'>(<span color="secondary">{{getEcology(item, 'bus')-getEcology(item, this.getItemType(item.pourcentage))}}</span>)</span>
+            </ion-row>
+            <ion-row>
+              <ion-icon name="heart"></ion-icon> Calories: {{getHealth(item, 'bus') | number:'1.0-3'}} Kcal <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="bus"'>(<span [ngClass]="{'positive negative neutral' : (getHealth(item, 'bus')-getHealth(item, this.getItemType(item.pourcentage))) > 0}">{{(getHealth(item, 'bus')-getHealth(item, this.getItemType(item.pourcentage))) | number:'1.0-3'}}</span>)</span>
+            </ion-row>
+            <ion-row>
+              <ion-icon name="cash"></ion-icon> Coûts: {{getEconomy(item, 'bus') | number:'1.2-2'}} $ <span class="diff" *ngIf='this.getItemType(item.pourcentage)!="bus"'>(<span color="secondary">{{(getEconomy(item, 'bus')-getEconomy(item, this.getItemType(item.pourcentage))) | number:'1.2-2'}}</span>)</span>
+            </ion-row>
+          </div>
+          <span *ngIf="getDistance(item, 'bus')==0">Indisponible</span>
         </ion-grid>
+
+
       </ion-card-content>
     </ion-card>
     <!--<ion-card (click)="changeItem(3)">
@@ -142,6 +159,5 @@
       </ion-card-content>
     </ion-card>-->
   </div>
-  
-</ion-content>
 
+</ion-content>

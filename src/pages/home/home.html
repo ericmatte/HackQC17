@@ -42,13 +42,13 @@
                 </p>
                 <ion-row>
                   <ion-col style="padding-left:0px;">
-                    <ion-icon name="leaf"></ion-icon> 20%
+                    <ion-icon name="leaf"></ion-icon> {{getEcology(item) | number:'1.0-1'}}kg
                   </ion-col>
                   <ion-col style="padding-left:0px;">
                     <ion-icon name="heart"></ion-icon> {{getHealth(item) | number:'1.1-1'}}K
                   </ion-col>
                   <ion-col style="padding-left:0px;">
-                    <ion-icon name="logo-usd"></ion-icon> 30%
+                    <ion-icon name="cash"></ion-icon> {{getEconomy(item) | number:'1.1-1'}}$
                   </ion-col>
                 </ion-row>
               </div>

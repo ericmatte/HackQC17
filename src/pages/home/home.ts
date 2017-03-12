@@ -173,9 +173,9 @@ export class HomePage {
             choise["auto"].time = response.duration.value;
             choise["auto"].distance = response.distance.text;
 
-            if((response.duration.value/60/60) < 15)  choise["auto"].nb += 3;
-            else if((response.duration.value/60/60) < 30)  choise["auto"].nb += 2;
-            else if((response.duration.value/60/60) < 50)  choise["auto"].nb += 1;
+            if((response.duration.value/60/60) < 15)  choise["auto"].nb += 1;
+            else if((response.duration.value/60/60) < 50)  choise["auto"].nb += 2;
+            else if((response.duration.value/60/60) > 50)  choise["auto"].nb += 3;
           
             i++;  
             if(i == 6)  resolve(choise);
@@ -289,6 +289,22 @@ export class HomePage {
     }
 
 
+  }
+
+  public getEcology(item){
+    var b = this.getItemType(item.pourcentage);
+    if (b === 'auto')
+      return 120*this.getDistance(item)/1000;
+    else return 0;
+  }
+
+  public getEconomy(item){
+    var b = this.getItemType(item.pourcentage);
+    if (b === 'auto')
+      return 0.45*this.getDistance(item);
+    else if (b === 'bus')
+      return 1;
+    else return 0;
   }
 
   public getDistance(item) {

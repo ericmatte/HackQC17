@@ -15,15 +15,21 @@ page-detail {
         margin-bottom:15px !important;
         width:100%;
     }
-    .first-choice{
+    .active{
         background-color:color($colors, semi-dark);
     }
-    .h4{
-
+    span.diff{
+        margin-left:5px;
     }
     .trivia {
         padding:10px;
         background:color($colors, semi-dark);
+    }
+    span.positive{
+        color:color($colors, secondary);
+    }
+    span.negative{
+        color:color($colors, danger);
     }
 }
 
