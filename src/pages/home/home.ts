@@ -7,6 +7,8 @@ import { GoogleService, travelModes } from "../../app/services/google.service";
 import 'rxjs/add/operator/map';
 import { Gauge, needle } from "../../assets/js/gauge";
 import * as $ from "jquery";
+import * as moment from "moment";
+import 'moment/locale/fr-ca';
 import * as q from "q";
 
 @Component({
@@ -25,27 +27,44 @@ export class HomePage {
   constructor(public navCtrl: NavController, public dataService: DataService, public weatherService: WeatherService, public googleService: GoogleService, public _ngZone : NgZone) {
     this.upcomingItems = [];
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 1; i++) {
       let _depart       = '1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke, QC J1L 0C8';
       let _destination  = "3455 rue du Fer-Droit, Sherbrooke, QC J1H 0A8";
       let _date         = "2017-03-17T19:10:31.236Z";   
-      let percentage    = null;
-      this.calculatePercent(_depart,_destination,_date).then( (a) => {
-          percentage = a;
-          console.log(percentage);
+
+      this.calculatePercent(_depart,_destination,_date).then( (percentage) => {
+          let type = this.getItemType(percentage);
+          let icon = "walk";
+          let transport = 0;
+          if (type === "auto") {
+            icon = "car";
+            transport = 0; 
+          }
+          if (type === "marche") {
+            icon = "walk";
+            transport = 1;
+          }
+          if (type === "bus") {
+            icon = "bus";
+            transport = 3;
+          }
+          if (type === "velo") {
+            icon = "bicycle";
+            transport = 2;
+          }
 
           this.upcomingItems.push({
-            title: 'Golf' + i, 
+            title: 'Golf Meetup', 
             description: "Meeting important au golf avec les dirigants.",
-            icon: 'walk', 
+            icon: icon, 
             depart: _depart,
             destination: _destination,
-            address: "28 rue des chênes",
+            address: "28 Rue Des Chênes",
             date: _date,
             pourcentage : percentage,
+            transport: transport
           });
-          
-          this._ngZone.run(() => {console.log('Outside Done!') });
+          this._ngZone.run(() => { });
       });
     }
     
@@ -157,6 +176,49 @@ export class HomePage {
   }
 
   public onFocus($event) {
+    if ($event.srcElement.value) {
+      let _date         = "2017-03-17T19:10:31.236Z"; 
+      let _depart = '1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke, QC J1L 0C8';
+      this.calculatePercent(_depart, $event.srcElement.value, _date).then( (percent) => {
+
+          let type = this.getItemType(percent);
+          let icon = "walk";
+          let transport = 0;
+          if (type === "auto") {
+            icon = "car";
+            transport = 0; 
+          }
+          if (type === "marche") {
+            icon = "walk";
+            transport = 1;
+          }
+          if (type === "bus") {
+            icon = "bus";
+            transport = 3;
+          }
+          if (type === "velo") {
+            icon = "bicycle";
+            transport = 2;
+          }
+
+          this.upcomingItems.unshift({
+            title: $event.srcElement.value, 
+            description: "",
+            icon: icon, 
+            depart: _depart,
+            destination: $event.srcElement.value,
+            address: $event.srcElement.value,
+            date: _date,
+            pourcentage : percent,
+            transport: transport
+          });
+
+          this.navCtrl.push(DetailTabsPage, {
+            item: this.upcomingItems[0]
+          });
+             
+          this._ngZone.run(() => { });
+      });
 
     this.upcomingItems.unshift({
         title: $event.srcElement.value,
@@ -172,6 +234,7 @@ export class HomePage {
     this.navCtrl.push(DetailTabsPage, {
       item: this.upcomingItems[0]
     });
+  }
   }
 
   setShameGauge() {
@@ -197,5 +260,54 @@ export class HomePage {
     this.navCtrl.push(DetailTabsPage, {
       item: item
     });
+  }
+
+  public getTime(item) {
+    moment.locale("fr-ca");
+    var b = this.getItemType(item);
+
+    return moment().add(item[b].time, 'seconds').fromNow();
+  }
+
+  public getHealth(item) {
+    var b = this.getItemType(item.pourcentage);
+    if (b === "auto") {
+      return 0;
+    }
+    else if (b === "bus") {
+      return (10 * item.pourcentage[this.getItemType(item.pourcentage)].time) / 3600 /1000;
+    }
+    else if (b === "marche") {
+      return (180 * item.pourcentage[this.getItemType(item.pourcentage)].time) / 3600 /1000;
+    }
+    else {
+      return (700 * item.pourcentage[this.getItemType(item.pourcentage)].time) / 3600 / 1000;
+    }
+
+
+  }
+
+  public getDistance(item) {
+    return item.pourcentage[this.getItemType(item.pourcentage)].distance;
+  }
+
+  public getItemType(item) {
+    if ((item['auto'].nb > item['bus'].nb 
+        && item['auto'].nb > item['marche'].nb 
+        && item['auto'].nb > item['velo'].nb)) {
+        return "auto";
+    }
+
+    if (item['marche'].nb > item['velo'].nb 
+        && item['marche'].nb > item['bus'].nb) {
+        return "marche";
+    }
+    
+    if (item['bus'].nb != 0 && item['bus'].nb > item['velo'].nb) {
+        return "bus";
+    }
+
+    //Else.. Its CAR
+    return "velo"
   }
 }

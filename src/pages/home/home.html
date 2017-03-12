@@ -30,10 +30,15 @@
           <ion-row>
             <ion-col class="center left-container">
               <ion-icon name="{{ item.icon }}" class="center-icon" style="font-size: 2.5em"></ion-icon>
+<<<<<<< HEAD
               <div item-left>18 min</div>
               <div item-left>(2.6 mi)</div>
+=======
+              <div item-left>{{getTime(item.pourcentage)}}</div>
+              <div item-left>({{getDistance(item)}})</div>
+>>>>>>> fae238c... Added some extra wdigety stuff
             </ion-col>
-            <ion-col col-9>
+            <ion-col col-9 style="padding: 10px;">
               <h2 class="card-header">{{ item.title }}</h2>
               <div>
                 <p class="gray">
@@ -41,13 +46,13 @@
                   {{ item.address }}
                 </p>
                 <ion-row>
-                  <ion-col>
+                  <ion-col style="padding-left:0px;">
                     <ion-icon name="leaf"></ion-icon> 20%
                   </ion-col>
-                  <ion-col>
-                    <ion-icon name="heart"></ion-icon> 50%
+                  <ion-col style="padding-left:0px;">
+                    <ion-icon name="heart"></ion-icon> {{getHealth(item) | number:'1.1-1'}}K
                   </ion-col>
-                  <ion-col>
+                  <ion-col style="padding-left:0px;">
                     <ion-icon name="logo-usd"></ion-icon> 30%
                   </ion-col>
                 </ion-row>
