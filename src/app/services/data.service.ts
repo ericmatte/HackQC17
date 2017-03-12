@@ -111,6 +111,19 @@ export class DataService {
             });
         });
     }
+    
+    public getHorodateurSherbrooke() {
+        return q.Promise((resolve, reject, notify) => {
+            $.ajax({
+                url: '../../assets/data/Horodateur-Standard.json',
+                dataType: 'text',
+            }).done((jsonResponse: string) => {
+                resolve(JSON.parse(jsonResponse));
+            }).fail( (e): void => {
+                reject(e);
+            });
+        });
+    }
 
     public getCout(type: string, distance: number) {
         if(type == "auto") return distance * (7/100) * 1.05;
