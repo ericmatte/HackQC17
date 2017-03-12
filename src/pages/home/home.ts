@@ -199,7 +199,7 @@ export class HomePage {
                     "Une bonne moyenne.", // < 70 %
                     "Super score mon ami!", // < 80 %
                     "Du monde proactif comme toi, ça en prends plus!", // < 90 %
-                    "WOW. Toi tu es un esti de bon humain!"]
+                    "WOW. Toi tu es un super de bon humain!"]
     gaugePercent = Math.round(gaugePercent*10);
     gaugePercent = gaugePercent<0 ? 0 : (gaugePercent>10 ? 10 : gaugePercent);
     this.gaugeComment = comments[gaugePercent];
