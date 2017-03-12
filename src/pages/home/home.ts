@@ -130,9 +130,9 @@ export class HomePage {
             choise["marche"].time = response.duration.value;
             choise["marche"].distance = response.distance.text;
 
-            if((response.duration.value/60/60) < 15)  choise["marche"].nb += 3;
-            else if((response.duration.value/60/60) < 30)  choise["marche"].nb += 2;
-            else if((response.duration.value/60/60) < 50)  choise["marche"].nb += 1;
+            if((response.duration.value/60) < 15)  choise["marche"].nb += 3;
+            else if((response.duration.value/60) < 30)  choise["marche"].nb += 2;
+            else if((response.duration.value/60) < 50)  choise["marche"].nb += 1;
            
             i++;  
             if(i == 6)  resolve(choise);
@@ -145,9 +145,9 @@ export class HomePage {
               
               choise["bus"].time = response.duration.value;
               choise["bus"].distance = response.distance.text;
-              if((response.duration.value/60/60) < 15)  choise["bus"].nb += 3;
-              else if((response.duration.value/60/60) < 30)  choise["bus"].nb += 2;
-              else if((response.duration.value/60/60) < 50)  choise["bus"].nb += 1;
+              if((response.duration.value/60) < 15)  choise["bus"].nb += 3;
+              else if((response.duration.value/60) < 30)  choise["bus"].nb += 2;
+              else if((response.duration.value/60) < 50)  choise["bus"].nb += 1;
             }
             i++;  
             if(i == 6)  resolve(choise);
@@ -159,9 +159,9 @@ export class HomePage {
             choise["velo"].time = response.duration.value;
             choise["velo"].distance = response.distance.text;
 
-            if((response.duration.value/60/60) < 15)  choise["velo"].nb += 3;
-            else if((response.duration.value/60/60) < 30)  choise["velo"].nb += 2;
-            else if((response.duration.value/60/60) < 50)  choise["velo"].nb += 1;
+            if((response.duration.value/60) < 15)  choise["velo"].nb += 3;
+            else if((response.duration.value/60) < 30)  choise["velo"].nb += 2;
+            else if((response.duration.value/60) < 50)  choise["velo"].nb += 1;
           
             i++;  
             if(i == 6)  resolve(choise);
@@ -173,10 +173,11 @@ export class HomePage {
             choise["auto"].time = response.duration.value;
             choise["auto"].distance = response.distance.text;
 
-            if((response.duration.value/60/60) < 15)  choise["auto"].nb += 1;
-            else if((response.duration.value/60/60) < 50)  choise["auto"].nb += 2;
-            else if((response.duration.value/60/60) > 50)  choise["auto"].nb += 3;
-          
+            if((response.duration.value/60) < 15)  choise["auto"].nb += 1;
+            else if((response.duration.value/60) < 50)  choise["auto"].nb += 2;
+            else if((response.duration.value/60) > 50)  choise["auto"].nb += 3;
+
+            console.log(1,choise["auto"].time);
             i++;  
             if(i == 6)  resolve(choise);
           }).catch( (error) => {
@@ -198,6 +199,7 @@ export class HomePage {
       let _depart = '1600 Boulevard du Plateau-Saint-Joseph, Sherbrooke, QC J1L 0C8';
       this.calculatePercent(_depart, $event.srcElement.value, _date).then( (percent) => {
 
+          console.log(percent);
           let type = this.getItemType(percent);
           let icon = "walk";
           let transport = 0;
@@ -312,22 +314,15 @@ export class HomePage {
   }
 
   public getItemType(item) {
-    if ((item['auto'].nb > item['bus'].nb 
-        && item['auto'].nb > item['marche'].nb 
-        && item['auto'].nb > item['velo'].nb)) {
-        return "auto";
-    }
+    let returning = [item['auto'], "auto"];
 
-    if (item['marche'].nb > item['velo'].nb 
-        && item['marche'].nb > item['bus'].nb) {
-        return "marche";
-    }
-    
-    if (item['bus'].nb != 0 && item['bus'].nb > item['velo'].nb) {
-        return "bus";
-    }
+
+    if (item['bus'].nb > returning[0].nb) returning = [item['bus'], "bus"];
+    if (item['marche'].nb > returning[0].nb) returning = [item['marche'],"marche"];
+    if (item['velo'].nb > returning[0].nb) returning = [item['velo'],"velo"];
 
     //Else.. Its CAR
-    return "velo"
+    return returning[1];
   }
+
 }
