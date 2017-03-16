@@ -130,8 +130,6 @@ export class DetailPage {
 
 
   public getTime(item, type) {
-    console.log(item);
-
     moment.locale("fr-ca");
     let hours = Math.floor(item.pourcentage[type].time/3600);
     let minutes = item.pourcentage[type].time&3600/60;
@@ -139,23 +137,15 @@ export class DetailPage {
   }
 
   public getItemType(item) {
-    if ((item['auto'].nb > item['bus'].nb 
-        && item['auto'].nb > item['marche'].nb 
-        && item['auto'].nb > item['velo'].nb)) {
-        return "auto";
-    }
+    let returning = [item['auto'], "auto"];
 
-    if (item['marche'].nb > item['velo'].nb 
-        && item['marche'].nb > item['bus'].nb) {
-        return "marche";
-    }
-    
-    if (item['bus'].nb != 0 && item['bus'].nb > item['velo'].nb) {
-        return "bus";
-    }
+
+    if (item['bus'].nb > returning[0].nb) returning = [item['bus'], "bus"];
+    if (item['marche'].nb > returning[0].nb) returning = [item['marche'],"marche"];
+    if (item['velo'].nb > returning[0].nb) returning = [item['velo'],"velo"];
 
     //Else.. Its CAR
-    return "velo"
+    return returning[1];
   }
 
 }
